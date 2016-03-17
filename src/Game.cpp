@@ -33,38 +33,38 @@ void Game::newGame(sf::Color p1_color, sf::Color p2_color)
 
 void Game::movePlayers()
 {
-    bool is_p1_moving_up = false;
+    bool is_p1_moving_up   = false;
     bool is_p1_moving_down = false;
-    bool is_p2_moving_up = false;
+    bool is_p2_moving_up   = false;
     bool is_p2_moving_down = false;
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))     {is_p1_moving_down=true;is_p1_moving_up=false;}
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z))     {is_p1_moving_down=false;is_p1_moving_up=true;}
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))  {is_p2_moving_down=true;is_p2_moving_up=false;}
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))    {is_p2_moving_down=false;is_p2_moving_up=true;}
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))      {is_p1_moving_down=true;is_p1_moving_up=false;}
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {is_p1_moving_down=false;is_p1_moving_up=true;}
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))   {is_p2_moving_down=true;is_p2_moving_up=false;}
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){is_p2_moving_down=false;is_p2_moving_up=true;}
 
-    if(_players[0]->canMoveUp() && !is_p1_moving_down &&  is_p1_moving_up)
-         _players[0]->moveUp();
-    else if(_players[0]->canMoveDown() && is_p1_moving_down && !is_p1_moving_up)
-        _players[0]->moveDown();
+    if     (_players[0]->canMoveUp()   && !is_p1_moving_down &&  is_p1_moving_up)
+            _players[0]->moveUp();
+    else if(_players[0]->canMoveDown() && is_p1_moving_down  && !is_p1_moving_up)
+            _players[0]->moveDown();
 
-    if(_players[1]->canMoveUp() && !is_p2_moving_down &&  is_p2_moving_up)
-         _players[1]->moveUp();
-    else if(_players[1]->canMoveDown() && is_p2_moving_down && !is_p2_moving_up)
-        _players[1]->moveDown();
+    if     (_players[1]->canMoveUp()   && !is_p2_moving_down &&  is_p2_moving_up)
+            _players[1]->moveUp();
+    else if(_players[1]->canMoveDown() &&  is_p2_moving_down && !is_p2_moving_up)
+            _players[1]->moveDown();
 }
 
 void Game::moveBall()
 {
-    bool canMoveUp = _ball->canMoveUp();
-    bool canMoveDown = _ball->canMoveDown();
-    bool canMoveLeft = _ball->canMoveLeft();
+    bool canMoveUp    = _ball->canMoveUp();
+    bool canMoveDown  = _ball->canMoveDown();
+    bool canMoveLeft  = _ball->canMoveLeft();
     bool canMoveRight = _ball->canMoveRight();
 
-    if(_ball->getMovingUp()   && !canMoveUp)     {_ball->setIsMovingUp(false);   }
-    if(!_ball->getMovingUp()  && !canMoveDown)   {_ball->setIsMovingUp(true);    }
-    if(_ball->getMovingLeft() && !canMoveLeft)   {_ball->setIsMovingLeft(false); }
-    if(!_ball->getMovingLeft() && !canMoveRight) {_ball->setIsMovingLeft(true);  }
+    if(_ball->getMovingUp()    && !canMoveUp)     {_ball->setIsMovingUp(false);   }
+    if(!_ball->getMovingUp()   && !canMoveDown)   {_ball->setIsMovingUp(true);    }
+    if(_ball->getMovingLeft()  && !canMoveLeft)   {_ball->setIsMovingLeft(false); }
+    if(!_ball->getMovingLeft() && !canMoveRight)  {_ball->setIsMovingLeft(true);  }
 
 
     float moveX = 0.f;

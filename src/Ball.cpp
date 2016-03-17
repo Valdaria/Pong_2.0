@@ -5,8 +5,8 @@ Ball::Ball(sf::Color color)
     _shape = new sf::RectangleShape(sf::Vector2f(10,10));
     _shape->setFillColor(color);
     _shape->setPosition(1280/2 - _shape->getSize().x/2, 720/2 - _shape->getSize().y/2);
-    _ismovingUp = (bool)rand()%2;
-    _ismovingLeft = (bool)rand()%2;
+    _ismovingUp = rand()%200;
+    _ismovingLeft = rand()%200;
     _speed = 5.f;
 }
 
