@@ -9,8 +9,14 @@ Game::Game(unsigned int width, unsigned int height, std::string winName)
 		std::cout << "Favicon not loaded" << std::endl;
     window->setIcon(64,64,favicon.getPixelsPtr());
 
-    _players.push_back(new Player(sf::Color(230, 0, 145)));
-    _players.push_back(new Player(sf::Color(23, 45, 15)));
+    _players.push_back(new Player(sf::Color(102,0,204)));
+    _players.push_back(new Player(sf::Color(51,153,255)));
+
+    _ball = new Ball();
+
+    _split = new sf::RectangleShape(sf::Vector2f(1,720));
+    _split->setFillColor(sf::Color::White);
+    _split->setPosition(1280/2 + 0.5f, 0);
     _players[1]->getRect()->setPosition(width-_players[1]->getRect()->getSize().x,0);
     update();
 }
@@ -48,9 +54,33 @@ void Game::movePlayers()
         _players[1]->moveDown();
 }
 
+void Game::moveBall()
+{
+    bool canMoveUp = _ball->canMoveUp();
+    bool canMoveDown = _ball->canMoveDown();
+    bool canMoveLeft = _ball->canMoveLeft();
+    bool canMoveRight = _ball->canMoveRight();
+
+    if(_ball->getMovingUp()   && !canMoveUp)     {_ball->setIsMovingUp(false);   }
+    if(!_ball->getMovingUp()  && !canMoveDown)   {_ball->setIsMovingUp(true);    }
+    if(_ball->getMovingLeft() && !canMoveLeft)   {_ball->setIsMovingLeft(false); }
+    if(!_ball->getMovingLeft() && !canMoveRight) {_ball->setIsMovingLeft(true);  }
+
+
+    float moveX = 0.f;
+    float moveY = 0.f;
+    if  (_ball->getMovingUp()){moveY= - _ball->getSpeed();}
+    else                      {moveY=   _ball->getSpeed();}
+
+    if  (_ball->getMovingLeft()){moveX= - _ball->getSpeed();}
+    else                        {moveX=   _ball->getSpeed();}
+    _ball->getRect()->move(moveX, moveY);
+}
+
 void Game::update()
 {
     movePlayers();
+    moveBall();
     draw();
 }
 
@@ -65,9 +95,11 @@ void Game::draw()
         }
 
         this->window->clear();
+            this->window->draw(*_split);
             for(unsigned int i(0); i< _players.size(); i++){
                 window->draw(*_players[i]->getRect());
             }
+            this->window->draw(*_ball->getRect());
         this->window->display();
         update();
     }
