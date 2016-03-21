@@ -18,6 +18,9 @@ class Game
         void movePlayers();
         void moveBall();
 
+        bool isBallCollidingPlayer1();
+        bool isBallCollidingPlayer2();
+
         void update();
         void draw();
     protected:

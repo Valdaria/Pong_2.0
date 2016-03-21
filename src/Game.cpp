@@ -61,10 +61,10 @@ void Game::moveBall()
     bool canMoveLeft  = _ball->canMoveLeft();
     bool canMoveRight = _ball->canMoveRight();
 
-    if(_ball->getMovingUp()    && !canMoveUp)     {_ball->setIsMovingUp(false);   }
-    if(!_ball->getMovingUp()   && !canMoveDown)   {_ball->setIsMovingUp(true);    }
-    if(_ball->getMovingLeft()  && !canMoveLeft)   {_ball->setIsMovingLeft(false); }
-    if(!_ball->getMovingLeft() && !canMoveRight)  {_ball->setIsMovingLeft(true);  }
+    if(_ball->getMovingUp()    && !canMoveUp)                                   {_ball->setIsMovingUp(false);   }
+    if(!_ball->getMovingUp()   && !canMoveDown)                                 {_ball->setIsMovingUp(true);    }
+    if(_ball->getMovingLeft()  && (!canMoveLeft || isBallCollidingPlayer1()))   {_ball->setIsMovingLeft(false); }
+    if(!_ball->getMovingLeft() && (!canMoveRight || isBallCollidingPlayer2()))  {_ball->setIsMovingLeft(true);  }
 
 
     float moveX = 0.f;
@@ -75,6 +75,28 @@ void Game::moveBall()
     if  (_ball->getMovingLeft()){moveX= - _ball->getSpeed();}
     else                        {moveX=   _ball->getSpeed();}
     _ball->getRect()->move(moveX, moveY);
+}
+
+bool Game::isBallCollidingPlayer1()
+{
+    if(_ball->getRect()->getGlobalBounds().intersects(_players[0]->getRect()->getGlobalBounds()))
+    {
+        _ball->getRect()->setFillColor(sf::Color(102,0,204));
+        return true;
+    }
+    return false;
+
+}
+
+bool Game::isBallCollidingPlayer2()
+{
+    if(_ball->getRect()->getGlobalBounds().intersects(_players[1]->getRect()->getGlobalBounds()))
+    {
+        _ball->getRect()->setFillColor(sf::Color(51,153,255));
+        return true;
+    }
+    return false;
+
 }
 
 void Game::update()
