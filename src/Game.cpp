@@ -38,10 +38,10 @@ void Game::movePlayers()
     bool is_p2_moving_up   = false;
     bool is_p2_moving_down = false;
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))      {is_p1_moving_down=true;is_p1_moving_up=false;}
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {is_p1_moving_down=false;is_p1_moving_up=true;}
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))   {is_p2_moving_down=true;is_p2_moving_up=false;}
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){is_p2_moving_down=false;is_p2_moving_up=true;}
+    if     (sf::Keyboard::isKeyPressed(sf::Keyboard::S))   {is_p1_moving_down=true ;is_p1_moving_up=false;}
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z))   {is_p1_moving_down=false;is_p1_moving_up=true ;}
+    if     (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){is_p2_moving_down=true ;is_p2_moving_up=false;}
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))  {is_p2_moving_down=false;is_p2_moving_up=true ;}
 
     if     (_players[0]->canMoveUp()   && !is_p1_moving_down &&  is_p1_moving_up)
             _players[0]->moveUp();
