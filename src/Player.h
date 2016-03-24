@@ -9,15 +9,20 @@ class Player
         Player(sf::Color playerColor);
         virtual ~Player();
 
+        float getSpeed() const;
+
         bool canMoveUp();
         bool canMoveDown();
         void moveUp();
         void moveDown();
-        float getSpeed() const;
+        void increaseSpeed();
+        void decreaseSpeed();
+        void resetSpeed();
         sf::RectangleShape* getRect() const;
 
     protected:
         float _speed;
+        float _defaultSpeed;
         sf::RectangleShape* _rect;
     private:
 };
