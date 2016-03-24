@@ -57,6 +57,9 @@ void Game::movePlayers()
 
 void Game::moveBall()
 {
+
+    float moveX = 0.f;
+    float moveY = 0.f;
     bool canMoveUp    = _ball->canMoveUp();
     bool canMoveDown  = _ball->canMoveDown();
     bool canMoveLeft  = _ball->canMoveLeft();
@@ -67,9 +70,6 @@ void Game::moveBall()
     if(_ball->getMovingLeft()  && (!canMoveLeft || isBallCollidingPlayer1()))   {_ball->setIsMovingLeft(false); }
     if(!_ball->getMovingLeft() && (!canMoveRight || isBallCollidingPlayer2()))  {_ball->setIsMovingLeft(true);  }
 
-
-    float moveX = 0.f;
-    float moveY = 0.f;
     if  (_ball->getMovingUp()){moveY= - _ball->getSpeed();}
     else                      {moveY=   _ball->getSpeed();}
 
@@ -104,6 +104,11 @@ void Game::update()
 {
     movePlayers();
     moveBall();
+
+//    if(sf::Keyboard::isKeyPressed(sf::Keyboard::I)) {_ball->speedUp();}
+//    if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {_ball->slowDown();}
+//    if(sf::Keyboard::isKeyPressed(sf::Keyboard::N)) {_ball->resetSpeed();}
+
     draw();
 }
 

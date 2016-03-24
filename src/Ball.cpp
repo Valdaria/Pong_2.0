@@ -43,11 +43,11 @@ bool Ball::canMoveRight()
     return false;
 }
 
-bool Ball::getMovingUp() const{return _ismovingUp;}
-bool Ball::getMovingLeft() const{return _ismovingLeft;}
-void Ball::setIsMovingUp(bool can){_ismovingUp=can;}
+bool Ball::getMovingUp()   const    {return _ismovingUp;}
+bool Ball::getMovingLeft() const    {return _ismovingLeft;}
+void Ball::setIsMovingUp  (bool can){_ismovingUp=can;}
 void Ball::setIsMovingLeft(bool can){_ismovingLeft=can;}
 
-void Ball::speedUp() {_speed = _defaultSpeed*1.3f;}
-void Ball::slowDown() {_speed = _defaultSpeed*0.80f;}
+void Ball::speedUp()    {_speed = _defaultSpeed*1.3f;}
+void Ball::slowDown()   {_speed = _defaultSpeed*0.80f;}
 void Ball::resetSpeed() {_speed = _defaultSpeed;}
