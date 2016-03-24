@@ -6,7 +6,6 @@ Player::Player(sf::Color playerColor)
     _rect->setFillColor(playerColor);
     _defaultSize = new sf::Vector2f(10,60);
     _speed = 6.f;
-    _defaultSpeed = 6.f;
 }
 
 Player::~Player()

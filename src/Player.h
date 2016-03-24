@@ -25,7 +25,7 @@ class Player
 
     protected:
         float _speed;
-        float _defaultSpeed;
+        float const _defaultSpeed = 6.f;
         sf::Vector2f* _defaultSize;
         sf::RectangleShape* _rect;
     private:

@@ -22,6 +22,10 @@ class Ball
         void setIsMovingUp(bool can);
         void setIsMovingLeft(bool can);
 
+        void speedUp();
+        void slowDown();
+        void resetSpeed();
+
     protected:
         sf::RectangleShape* _shape;
 
@@ -29,5 +33,6 @@ class Ball
         bool _ismovingLeft;
 
         float _speed;
+        float const _defaultSpeed = 5.f;
     private:
 };
