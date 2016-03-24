@@ -18,11 +18,15 @@ class Player
         void increaseSpeed();
         void decreaseSpeed();
         void resetSpeed();
+        void increaseSize();
+        void decreaseSize();
+        void resetSize();
         sf::RectangleShape* getRect() const;
 
     protected:
         float _speed;
         float _defaultSpeed;
+        sf::Vector2f* _defaultSize;
         sf::RectangleShape* _rect;
     private:
 };
