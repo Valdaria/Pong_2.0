@@ -7,7 +7,8 @@ Game::Game(unsigned int width, unsigned int height, std::string winName)
     sf::Image favicon;
     if (!favicon.loadFromFile("res/favicon.png"))
 		std::cout << "Favicon not loaded" << std::endl;
-    window->setIcon(64,64,favicon.getPixelsPtr());
+    else
+        window->setIcon(64,64,favicon.getPixelsPtr());
 
     _players.push_back(new Player(sf::Color(102,0,204)));
     _players.push_back(new Player(sf::Color(51,153,255)));
