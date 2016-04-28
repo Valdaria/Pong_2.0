@@ -4,6 +4,7 @@ Player::Player(sf::Color playerColor)
 {
     _rect = new sf::RectangleShape(sf::Vector2f(10, 60));
     _rect->setFillColor(playerColor);
+    _rect->setPosition(0, 720/2 - _rect->getSize().y );
     _defaultSize = new sf::Vector2f(10,60);
     _speed = 6.f;
 }

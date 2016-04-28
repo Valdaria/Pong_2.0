@@ -4,6 +4,7 @@ Game::Game(unsigned int width, unsigned int height, std::string winName)
 {
     this->window = new sf::RenderWindow(sf::VideoMode(width, height), winName);
     window->setFramerateLimit(60);
+    window->setVerticalSyncEnabled(true);
     sf::Image favicon;
     if (!favicon.loadFromFile("res/favicon.png"))
 		std::cout << "Favicon not loaded" << std::endl;
@@ -18,7 +19,7 @@ Game::Game(unsigned int width, unsigned int height, std::string winName)
     _split = new sf::RectangleShape(sf::Vector2f(1,720));
     _split->setFillColor(sf::Color::White);
     _split->setPosition(1280/2 + 0.5f, 0);
-    _players[1]->getRect()->setPosition(width-_players[1]->getRect()->getSize().x,0);
+    _players[1]->getRect()->setPosition(width-_players[1]->getRect()->getSize().x,_players[1]->getRect()->getPosition().y);
     update();
 }
 
@@ -124,8 +125,8 @@ void Game::draw()
 
         this->window->clear();
             this->window->draw(*_split);
-            for(unsigned int i(0); i< _players.size(); i++){
-                window->draw(*_players[i]->getRect());
+            for(Player *p : _players){
+                window->draw(*p->getRect());
             }
             this->window->draw(*_ball->getRect());
         this->window->display();
